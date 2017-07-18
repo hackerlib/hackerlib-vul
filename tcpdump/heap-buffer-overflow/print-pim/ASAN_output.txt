@@ -1,4 +1,4 @@
-fuzz@ro4k:~/afl-test$ /home/fuzz/afl-test/tcpdump/install/sbin/tcpdump -e -r tpout/slaver3/crashes/id\:000024\,sig\:06\,src\:002813+003101\,op\:splice\,rep\:2 
+~/afl-test$ /home/fuzz/afl-test/tcpdump/install/sbin/tcpdump -e -r tpout/slaver3/crashes/id\:000024\,sig\:06\,src\:002813+003101\,op\:splice\,rep\:2 
 reading from file tpout/slaver3/crashes/id:000024,sig:06,src:002813+003101,op:splice,rep:2, link-type EN10MB (Ethernet)
 =================================================================
 ==11031==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000deb6 at pc 0x000000637c51 bp 0x7ffd03e8a9a0 sp 0x7ffd03e8a998
