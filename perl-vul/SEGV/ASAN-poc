@@ -1,0 +1,17 @@
+ASAN:DEADLYSIGNAL
+=================================================================
+==81354==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x0000009a0504 bp 0xfffffffffffffffc sp 0x7ffc34bcf320 T0)
+    #0 0x9a0503 in Perl_sv_setpv_bufsize /home/ro4k/fuzzpro/perl-5.26.0/sv.c:4961:17
+    #1 0xbaff62 in Perl_do_vop /home/ro4k/fuzzpro/perl-5.26.0/doop.c:1031:9
+    #2 0xa49c84 in Perl_pp_bit_or /home/ro4k/fuzzpro/perl-5.26.0/pp.c:2471:2
+    #3 0x83f52f in Perl_runops_debug /home/ro4k/fuzzpro/perl-5.26.0/dump.c:2451:23
+    #4 0x5da839 in S_run_body /home/ro4k/fuzzpro/perl-5.26.0/perl.c:2524:2
+    #5 0x5da839 in perl_run /home/ro4k/fuzzpro/perl-5.26.0/perl.c:2447
+    #6 0x50629a in main /home/ro4k/fuzzpro/perl-5.26.0/perlmain.c:123:9
+    #7 0x7f0226dd282f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #8 0x4349c8 in _start (/home/ro4k/fuzzpro/perl-5.26.0/perl+0x4349c8)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/ro4k/fuzzpro/perl-5.26.0/sv.c:4961:17 in Perl_sv_setpv_bufsize
+==81354==ABORTING
+
