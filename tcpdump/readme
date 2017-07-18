@@ -1,0 +1,9 @@
+this are found by afl-fuzz
+
+OS: ubuntu16.04
+
+libpcap, install by sudo apt install libpcap;
+
+tcpdump: git clone https://github.com/the-tcpdump-group/tcpdump.git  (d72adb9406a34998a96d148fa701cd4fb573e8b9)
+
+

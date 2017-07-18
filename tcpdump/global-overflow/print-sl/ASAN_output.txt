@@ -1,0 +1,52 @@
+sliplink_print vulnerability
+=================================================================
+==24086==ERROR: AddressSanitizer: global-buffer-overflow on address 0x000001a8e0e0 at pc 0x0000006878bc bp 0x7ffd5a934750 sp 0x7ffd5a934748
+WRITE of size 4 at 0x000001a8e0e0 thread T0
+    #0 0x6878bb in sliplink_print /home/fuzz/afl-test/tcpdump/./print-sl.c:160:26
+    #1 0x6878bb in sl_if_print /home/fuzz/afl-test/tcpdump/./print-sl.c:77
+    #2 0x507235 in pretty_print_packet /home/fuzz/afl-test/tcpdump/./print.c:339:18
+    #3 0x4f3ceb in print_packet /home/fuzz/afl-test/tcpdump/./tcpdump.c:2598:2
+    #4 0x7ce892 in pcap_offline_read /home/fuzz/afl-test/libpcap/./savefile.c:527:4
+    #5 0x6d283c in pcap_loop /home/fuzz/afl-test/libpcap/./pcap.c:1705:8
+    #6 0x4efd3e in main /home/fuzz/afl-test/tcpdump/./tcpdump.c:2101:12
+    #7 0x7f9a2667582f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #8 0x419978 in _start (/home/fuzz/afl-test/tcpdump/install/sbin/tcpdump+0x419978)
+
+0x000001a8e0e0 is located 1792 bytes to the right of global variable 'tcp_seq_hash4' defined in './print-tcp.c:101:28' (0x1a86700) of size 29408
+SUMMARY: AddressSanitizer: global-buffer-overflow /home/fuzz/afl-test/tcpdump/./print-sl.c:160:26 in sliplink_print
+Shadow bytes around the buggy address:
+  0x000080349bc0: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349bd0: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349be0: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349bf0: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349c00: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+=>0x000080349c10: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9[f9]f9 f9 f9
+  0x000080349c20: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349c30: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349c40: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349c50: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x000080349c60: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==24086==ABORTING
+
+

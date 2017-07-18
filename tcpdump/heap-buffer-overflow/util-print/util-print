@@ -1,0 +1,62 @@
+fuzz@ro4k:~/afl-test$ /home/fuzz/afl-test/tcpdump/install/sbin/tcpdump -e -r tpout/slaver3/crashes/id\:000023\,sig\:06\,src\:000102+002334\,op\:splice\,rep\:8 
+reading from file tpout/slaver3/crashes/id:000023,sig:06,src:000102+002334,op:splice,rep:8, link-type EN10MB (Ethernet)
+=================================================================
+==5533==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60400000debe at pc 0x0000006bce59 bp 0x7ffcae9ae7e0 sp 0x7ffcae9ae7d8
+READ of size 1 at 0x60400000debe thread T0
+    #0 0x6bce58 in safeputs /home/fuzz/afl-test/tcpdump/./util-print.c:905:9
+    #1 0x5df948 in lldp_print /home/fuzz/afl-test/tcpdump/./print-lldp.c:1555:17
+    #2 0x570554 in ethertype_print /home/fuzz/afl-test/tcpdump/./print-ether.c:409:3
+    #3 0x56fd97 in ether_print /home/fuzz/afl-test/tcpdump/./print-ether.c:237:7
+    #4 0x507235 in pretty_print_packet /home/fuzz/afl-test/tcpdump/./print.c:339:18
+    #5 0x4f3ceb in print_packet /home/fuzz/afl-test/tcpdump/./tcpdump.c:2598:2
+    #6 0x7ce892 in pcap_offline_read /home/fuzz/afl-test/libpcap/./savefile.c:527:4
+    #7 0x6d283c in pcap_loop /home/fuzz/afl-test/libpcap/./pcap.c:1705:8
+    #8 0x4efd3e in main /home/fuzz/afl-test/tcpdump/./tcpdump.c:2101:12
+    #9 0x7f73d43c682f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #10 0x419978 in _start (/home/fuzz/afl-test/tcpdump/install/sbin/tcpdump+0x419978)
+
+0x60400000debe is located 0 bytes to the right of 46-byte region [0x60400000de90,0x60400000debe)
+allocated by thread T0 here:
+    #0 0x4b9e28 in realloc (/home/fuzz/afl-test/tcpdump/install/sbin/tcpdump+0x4b9e28)
+    #1 0x7d0ebc in grow_buffer /home/fuzz/afl-test/libpcap/./sf-pcap.c:422:18
+    #2 0x7d0ebc in pcap_next_packet /home/fuzz/afl-test/libpcap/./sf-pcap.c:594
+    #3 0x7ce77a in pcap_offline_read /home/fuzz/afl-test/libpcap/./savefile.c:518:12
+    #4 0x6d283c in pcap_loop /home/fuzz/afl-test/libpcap/./pcap.c:1705:8
+    #5 0x7f73d43c682f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/fuzz/afl-test/tcpdump/./util-print.c:905:9 in safeputs
+Shadow bytes around the buggy address:
+  0x0c087fff9b80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9b90: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9ba0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9bb0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9bc0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c087fff9bd0: fa fa 00 00 00 00 00[06]fa fa 00 00 00 00 00 fa
+  0x0c087fff9be0: fa fa 00 00 00 00 00 fa fa fa fd fd fd fd fd fd
+  0x0c087fff9bf0: fa fa fd fd fd fd fd fd fa fa fd fd fd fd fd fd
+  0x0c087fff9c00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9c10: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c087fff9c20: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==5533==ABORTING
+

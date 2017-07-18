@@ -1,0 +1,38 @@
+There are two vulnerabilities is compressed_sl_print:
+
+1.ASAN:DEADLYSIGNAL
+=================================================================
+==17792==ERROR: AddressSanitizer: SEGV on unknown address 0x000001ab60dc (pc 0x000000686ee3 bp 0x0000000000ff sp 0x7ffc52cdf800 T0)
+    #0 0x686ee2 in compressed_sl_print /home/fuzz/afl-test/tcpdump/./print-sl.c:229:3
+    #1 0x686ee2 in sliplink_print /home/fuzz/afl-test/tcpdump/./print-sl.c:166
+    #2 0x686ee2 in sl_if_print /home/fuzz/afl-test/tcpdump/./print-sl.c:77
+    #3 0x507235 in pretty_print_packet /home/fuzz/afl-test/tcpdump/./print.c:339:18
+    #4 0x4f3ceb in print_packet /home/fuzz/afl-test/tcpdump/./tcpdump.c:2598:2
+    #5 0x7ce892 in pcap_offline_read /home/fuzz/afl-test/libpcap/./savefile.c:527:4
+    #6 0x6d283c in pcap_loop /home/fuzz/afl-test/libpcap/./pcap.c:1705:8
+    #7 0x4efd3e in main /home/fuzz/afl-test/tcpdump/./tcpdump.c:2101:12
+    #8 0x7f70281c982f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #9 0x419978 in _start (/home/fuzz/afl-test/tcpdump/install/sbin/tcpdump+0x419978)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/fuzz/afl-test/tcpdump/./print-sl.c:229:3 in compressed_sl_print
+==17792==ABORTING
+
+2.ASAN:DEADLYSIGNAL
+=================================================================
+==6887==ERROR: AddressSanitizer: SEGV on unknown address 0x000001aae8dc (pc 0x000000687485 bp 0x7fff6aa38d78 sp 0x7fff6aa37480 T0)
+    #0 0x687484 in compressed_sl_print /home/fuzz/afl-test/tcpdump/./print-sl.c:253:34
+    #1 0x687484 in sliplink_print /home/fuzz/afl-test/tcpdump/./print-sl.c:166
+    #2 0x687484 in sl_if_print /home/fuzz/afl-test/tcpdump/./print-sl.c:77
+    #3 0x507235 in pretty_print_packet /home/fuzz/afl-test/tcpdump/./print.c:339:18
+    #4 0x4f3ceb in print_packet /home/fuzz/afl-test/tcpdump/./tcpdump.c:2598:2
+    #5 0x7ce892 in pcap_offline_read /home/fuzz/afl-test/libpcap/./savefile.c:527:4
+    #6 0x6d283c in pcap_loop /home/fuzz/afl-test/libpcap/./pcap.c:1705:8
+    #7 0x4efd3e in main /home/fuzz/afl-test/tcpdump/./tcpdump.c:2101:12
+    #8 0x7f5c59ef682f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #9 0x419978 in _start (/home/fuzz/afl-test/tcpdump/install/sbin/tcpdump+0x419978)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/fuzz/afl-test/tcpdump/./print-sl.c:253:34 in compressed_sl_print
+==6887==ABORTING
+
