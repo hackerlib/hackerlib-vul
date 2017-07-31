@@ -1,0 +1,16 @@
+==128043==ERROR: AddressSanitizer: odr-violation (0x00000144ff00):
+  [1] size=4 'fileOffset' read.c:31:5
+  [2] size=4 'fileOffset' listaction.c:29:5
+These globals were registered at these points:
+  [1]:
+    #0 0x429d46 in __asan_register_globals (/home/ro4k/fuzz/program/libming-master/install/bin/listaction+0x429d46)
+    #1 0x583178 in asan.module_ctor (/home/ro4k/fuzz/program/libming-master/install/bin/listaction+0x583178)
+
+  [2]:
+    #0 0x429d46 in __asan_register_globals (/home/ro4k/fuzz/program/libming-master/install/bin/listaction+0x429d46)
+    #1 0x7fcf422620e8 in asan.module_ctor (/home/ro4k/fuzz/program/libming-master/install/lib/libming.so.1+0x730e8)
+
+==128043==HINT: if you don't care about these errors you may set ASAN_OPTIONS=detect_odr_violation=0
+SUMMARY: AddressSanitizer: odr-violation: global 'fileOffset' at read.c:31:5
+==128043==ABORTING
+

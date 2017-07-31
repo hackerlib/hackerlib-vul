@@ -1,0 +1,55 @@
+mkbitmap $FILE
+==6219==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60200000eff0 at pc 0x0000004f2afd bp 0x7ffe2e84f450 sp 0x7ffe2e84f448
+READ of size 2 at 0x60200000eff0 thread T0
+    #0 0x4f2afc in interpolate_cubic /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:318:9
+    #1 0x4f2afc in process_file /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:449
+    #2 0x4eae63 in main /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:766:7
+    #3 0x7fcb0b7bd82f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #4 0x418b78 in _start (/home/ro4k/fuzz/program/potrace-1.14/install/bin/mkbitmap+0x418b78)
+
+0x60200000eff1 is located 0 bytes to the right of 1-byte region [0x60200000eff0,0x60200000eff1)
+allocated by thread T0 here:
+    #0 0x4b8e30 in calloc (/home/ro4k/fuzz/program/potrace-1.14/install/bin/mkbitmap+0x4b8e30)
+    #1 0x507175 in gm_new /home/ro4k/fuzz/program/potrace-1.14/src/greymap.c:89:30
+    #2 0x507175 in gm_readbody_bmp /home/ro4k/fuzz/program/potrace-1.14/src/greymap.c:739
+    #3 0x507175 in gm_read /home/ro4k/fuzz/program/potrace-1.14/src/greymap.c:306
+    #4 0x4ec603 in process_file /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:393:9
+    #5 0x4eae63 in main /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:766:7
+    #6 0x7fcb0b7bd82f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/ro4k/fuzz/program/potrace-1.14/src/mkbitmap.c:318:9 in interpolate_cubic
+Shadow bytes around the buggy address:
+  0x0c047fff9da0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9db0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9dc0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9dd0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9de0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c047fff9df0: fa fa fa fa fa fa fa fa fa fa 01 fa fa fa[01]fa
+  0x0c047fff9e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9e10: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9e20: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9e30: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff9e40: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==6219==ABORTING
+

@@ -1,0 +1,82 @@
+==6194==ERROR: AddressSanitizer failed to allocate 0x400002000 (17179877376) bytes of LargeMmapAllocator (error code: 12)
+==6194==Process memory map follows:
+	0x000000400000-0x00000057d000	/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace
+	0x00000077c000-0x00000077d000	/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace
+	0x00000077d000-0x000000788000	/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace
+	0x000000788000-0x000001411000	
+	0x00007fff7000-0x00008fff7000	
+	0x00008fff7000-0x02008fff7000	
+	0x02008fff7000-0x10007fff8000	
+	0x600000000000-0x603000000000	
+	0x603000000000-0x603000010000	
+	0x603000010000-0x606000000000	
+	0x606000000000-0x606000010000	
+	0x606000010000-0x607000000000	
+	0x607000000000-0x607000010000	
+	0x607000010000-0x616000000000	
+	0x616000000000-0x616000020000	
+	0x616000020000-0x619000000000	
+	0x619000000000-0x619000020000	
+	0x619000020000-0x621000000000	
+	0x621000000000-0x621000020000	
+	0x621000020000-0x640000000000	
+	0x640000000000-0x640000003000	
+	0x7fda59700000-0x7fda59800000	
+	0x7fda59900000-0x7fda59a00000	
+	0x7fda59a91000-0x7fda5bde3000	
+	0x7fda5bde3000-0x7fda5bfa3000	/lib/x86_64-linux-gnu/libc-2.23.so
+	0x7fda5bfa3000-0x7fda5c1a3000	/lib/x86_64-linux-gnu/libc-2.23.so
+	0x7fda5c1a3000-0x7fda5c1a7000	/lib/x86_64-linux-gnu/libc-2.23.so
+	0x7fda5c1a7000-0x7fda5c1a9000	/lib/x86_64-linux-gnu/libc-2.23.so
+	0x7fda5c1a9000-0x7fda5c1ad000	
+	0x7fda5c1ad000-0x7fda5c1c3000	/lib/x86_64-linux-gnu/libgcc_s.so.1
+	0x7fda5c1c3000-0x7fda5c3c2000	/lib/x86_64-linux-gnu/libgcc_s.so.1
+	0x7fda5c3c2000-0x7fda5c3c3000	/lib/x86_64-linux-gnu/libgcc_s.so.1
+	0x7fda5c3c3000-0x7fda5c3c6000	/lib/x86_64-linux-gnu/libdl-2.23.so
+	0x7fda5c3c6000-0x7fda5c5c5000	/lib/x86_64-linux-gnu/libdl-2.23.so
+	0x7fda5c5c5000-0x7fda5c5c6000	/lib/x86_64-linux-gnu/libdl-2.23.so
+	0x7fda5c5c6000-0x7fda5c5c7000	/lib/x86_64-linux-gnu/libdl-2.23.so
+	0x7fda5c5c7000-0x7fda5c5ce000	/lib/x86_64-linux-gnu/librt-2.23.so
+	0x7fda5c5ce000-0x7fda5c7cd000	/lib/x86_64-linux-gnu/librt-2.23.so
+	0x7fda5c7cd000-0x7fda5c7ce000	/lib/x86_64-linux-gnu/librt-2.23.so
+	0x7fda5c7ce000-0x7fda5c7cf000	/lib/x86_64-linux-gnu/librt-2.23.so
+	0x7fda5c7cf000-0x7fda5c7e7000	/lib/x86_64-linux-gnu/libpthread-2.23.so
+	0x7fda5c7e7000-0x7fda5c9e6000	/lib/x86_64-linux-gnu/libpthread-2.23.so
+	0x7fda5c9e6000-0x7fda5c9e7000	/lib/x86_64-linux-gnu/libpthread-2.23.so
+	0x7fda5c9e7000-0x7fda5c9e8000	/lib/x86_64-linux-gnu/libpthread-2.23.so
+	0x7fda5c9e8000-0x7fda5c9ec000	
+	0x7fda5c9ec000-0x7fda5ca05000	/lib/x86_64-linux-gnu/libz.so.1.2.8
+	0x7fda5ca05000-0x7fda5cc04000	/lib/x86_64-linux-gnu/libz.so.1.2.8
+	0x7fda5cc04000-0x7fda5cc05000	/lib/x86_64-linux-gnu/libz.so.1.2.8
+	0x7fda5cc05000-0x7fda5cc06000	/lib/x86_64-linux-gnu/libz.so.1.2.8
+	0x7fda5cc06000-0x7fda5cd0e000	/lib/x86_64-linux-gnu/libm-2.23.so
+	0x7fda5cd0e000-0x7fda5cf0d000	/lib/x86_64-linux-gnu/libm-2.23.so
+	0x7fda5cf0d000-0x7fda5cf0e000	/lib/x86_64-linux-gnu/libm-2.23.so
+	0x7fda5cf0e000-0x7fda5cf0f000	/lib/x86_64-linux-gnu/libm-2.23.so
+	0x7fda5cf0f000-0x7fda5cf35000	/lib/x86_64-linux-gnu/ld-2.23.so
+	0x7fda5d0ce000-0x7fda5d127000	
+	0x7fda5d127000-0x7fda5d134000	
+	0x7fda5d134000-0x7fda5d135000	/lib/x86_64-linux-gnu/ld-2.23.so
+	0x7fda5d135000-0x7fda5d136000	/lib/x86_64-linux-gnu/ld-2.23.so
+	0x7fda5d136000-0x7fda5d137000	
+	0x7fff76f48000-0x7fff76f69000	[stack]
+	0x7fff76fbc000-0x7fff76fbe000	[vvar]
+	0x7fff76fbe000-0x7fff76fc0000	[vdso]
+	0xffffffffff600000-0xffffffffff601000	[vsyscall]
+==6194==End of process memory map.
+==6194==AddressSanitizer CHECK failed: /build/llvm-toolchain-3.8-_PD09B/llvm-toolchain-3.8-3.8/projects/compiler-rt/lib/sanitizer_common/sanitizer_common.cc:183 "((0 && "unable to mmap")) != (0)" (0x0, 0x0)
+    #0 0x4c24fd in __asan::AsanCheckFailed(char const*, int, char const*, unsigned long long, unsigned long long) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x4c24fd)
+    #1 0x4c9123 in __sanitizer::CheckFailed(char const*, int, char const*, unsigned long long, unsigned long long) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x4c9123)
+    #2 0x4c9311 in __sanitizer::ReportMmapFailureAndDie(unsigned long, char const*, char const*, int, bool) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x4c9311)
+    #3 0x4d2282 in __sanitizer::MmapOrDie(unsigned long, char const*, bool) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x4d2282)
+    #4 0x42495f in __asan::Allocator::Allocate(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*, __asan::AllocType, bool) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x42495f)
+    #5 0x41d803 in __asan::asan_calloc(unsigned long, unsigned long, __sanitizer::BufferedStackTrace*) (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x41d803)
+    #6 0x4b905a in calloc (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x4b905a)
+    #7 0x4fc4a6 in bm_new /home/ro4k/fuzz/program/potrace-1.14/src/./bitmap.h:121:30
+    #8 0x4fc4a6 in bm_readbody_bmp /home/ro4k/fuzz/program/potrace-1.14/src/bitmap_io.c:574
+    #9 0x4fc4a6 in bm_read /home/ro4k/fuzz/program/potrace-1.14/src/bitmap_io.c:138
+    #10 0x4f2c73 in process_file /home/ro4k/fuzz/program/potrace-1.14/src/main.c:1058:9
+    #11 0x4ef4c0 in main /home/ro4k/fuzz/program/potrace-1.14/src/main.c:1214:7
+    #12 0x7fda5be0382f in __libc_start_main /build/glibc-bfm8X4/glibc-2.23/csu/../csu/libc-start.c:291
+    #13 0x418dc8 in _start (/home/ro4k/fuzz/program/potrace-1.14/install/bin/potrace+0x418dc8)
+
